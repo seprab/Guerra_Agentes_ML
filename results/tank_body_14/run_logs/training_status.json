@@ -1,0 +1,24 @@
+{
+    "war": {
+        "checkpoints": [
+            {
+                "steps": 9256,
+                "file_path": "results\\tank_body_14\\war\\war-9256.onnx",
+                "reward": -12.423853226006031,
+                "creation_time": 1607014101.3531768
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 9256,
+            "file_path": "results\\tank_body_14\\war.onnx",
+            "reward": -12.423853226006031,
+            "creation_time": 1607014101.3531768
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.22.0",
+        "torch_version": "1.7.0",
+        "tensorflow_version": -1
+    }
+}

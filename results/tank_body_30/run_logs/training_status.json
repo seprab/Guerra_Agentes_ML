@@ -1,0 +1,48 @@
+{
+    "war": {
+        "checkpoints": [
+            {
+                "steps": 1999992,
+                "file_path": "results\\tank_body_30\\war\\war-1999992.onnx",
+                "reward": -0.9937770247459412,
+                "creation_time": 1607088446.2308679
+            },
+            {
+                "steps": 2499984,
+                "file_path": "results\\tank_body_30\\war\\war-2499984.onnx",
+                "reward": 37.9055380543073,
+                "creation_time": 1607088933.9511094
+            },
+            {
+                "steps": 2999896,
+                "file_path": "results\\tank_body_30\\war\\war-2999896.onnx",
+                "reward": 102.9970623595374,
+                "creation_time": 1607089416.248482
+            },
+            {
+                "steps": 3499992,
+                "file_path": "results\\tank_body_30\\war\\war-3499992.onnx",
+                "reward": 84.0252561211586,
+                "creation_time": 1607089895.0342422
+            },
+            {
+                "steps": 3500760,
+                "file_path": "results\\tank_body_30\\war\\war-3500760.onnx",
+                "reward": 84.0252561211586,
+                "creation_time": 1607089895.134185
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3500760,
+            "file_path": "results\\tank_body_30\\war.onnx",
+            "reward": 84.0252561211586,
+            "creation_time": 1607089895.134185
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.22.0",
+        "torch_version": "1.7.0",
+        "tensorflow_version": -1
+    }
+}
