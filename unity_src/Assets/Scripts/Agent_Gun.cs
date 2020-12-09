@@ -12,12 +12,18 @@ public class Agent_Gun : Agent
     private bool ShotAvaliable = true;
 
     [SerializeField] private string enemy_tag;
-    [SerializeField] private Gun_Train_Scenario controller;
+    [SerializeField] private Gun_Train_Scenario train_controller;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private bool trainingMode;
     [SerializeField] private float m_TurnSpeed = 180f;
     [SerializeField] private float timeBetweenShots = 1f;
+    public Transform Target
+    {
+        get { return target; }
+        set { target = value; }
+    }
+
 
     public override void Initialize()
     {
@@ -29,20 +35,21 @@ public class Agent_Gun : Agent
     {
         if (target == null)
         {
-            sensor.AddObservation(new float[4]);
+            sensor.AddObservation(new float[1]);
             return;
         }
 
         // 3 observations
-        Vector3 toEnemy = target.localPosition - transform.localPosition;
-        sensor.AddObservation(toEnemy.normalized);
+        //Vector3 toEnemy = target.localPosition - transform.localPosition;
+        //sensor.AddObservation(toEnemy.normalized);
 
         // 1 observation
-        float dot = Vector3.Dot(transform.forward, (target.localPosition - transform.localPosition).normalized); //1 if pointing forward target,  -1 if facing oppsitve
+        float dot = Vector3.Dot(transform.forward, (target.position - transform.position).normalized); //1 if pointing forward target,  -1 if facing oppsitve
         sensor.AddObservation(dot);
 
+
         // 1 observation
-        sensor.AddObservation(ShotAvaliable);
+        //sensor.AddObservation(ShotAvaliable);
     }
     public override void OnEpisodeBegin()
     {
@@ -51,7 +58,9 @@ public class Agent_Gun : Agent
         {
             ShotAvaliable = true;          
             transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(-180f, 180f), 0);
-            target = controller.IniciarEntrenamiento();
+            Debug.Log(CompletedEpisodes);
+            int level = Mathf.FloorToInt(CompletedEpisodes / 300) + 1;
+            Target = train_controller.IniciarEntrenamiento(level);
         }
     }
     public override void Heuristic(float[] actionsOut)
@@ -87,32 +96,37 @@ public class Agent_Gun : Agent
         if (!ShotAvaliable)
             return;
 
-        int enemy_layerMask = 1 << LayerMask.NameToLayer(enemy_tag);
-
-        Vector3 direction = transform.forward;
-
         Instantiate(projectile, shootingPoint);
-        Debug.DrawRay(transform.position, direction, Color.blue, 1f);
 
-        if (Physics.Raycast(shootingPoint.position, direction, out var hit, 200f, enemy_layerMask))
+        if(trainingMode)
         {
-            AddReward(1f);
-            EndEpisode();
+            int enemy_layerMask = 1 << LayerMask.NameToLayer(enemy_tag);
+            Vector3 direction = transform.forward;
+            
+            if (Physics.Raycast(shootingPoint.position, direction, out var hit, 50f, enemy_layerMask))
+            {
+                Debug.DrawRay(transform.position, direction*50f, Color.blue, 1f);
+                AddReward(1f);
+                EndEpisode();
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, direction*50f, Color.red, 1f);
+                AddReward(-0.03f);
+            }
         }
-        else
-        {
-            AddReward(-0.1f);
-        }
+        
 
         ShotAvaliable = false;
         StartCoroutine(CountToEnableShot(timeBetweenShots));
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        if (trainingMode )
+        if (trainingMode)
         {
             float dot = Vector3.Dot(transform.forward, (target.localPosition - transform.localPosition).normalized); //1 if pointing forward target,  -1 if facing oppsitve
-            AddReward(dot/100f);
+            float reward = dot - 0.8f;
+            AddReward(reward/100f);
         }
     }
     private IEnumerator CountToEnableShot(float delay)

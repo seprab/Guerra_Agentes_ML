@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1607463280",
+        "python_version": "3.7.9 (default, Aug 31 2020, 17:10:11) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\sergi\\.conda\\envs\\ml-agents-war\\Scripts\\mlagents-learn ./trainer_config.yaml --run-id gun_12",
+        "mlagents_version": "0.22.0",
+        "mlagents_envs_version": "0.22.0",
+        "communication_protocol_version": "1.2.0",
+        "pytorch_version": "1.7.0",
+        "numpy_version": "1.18.5",
+        "end_time_seconds": "1607463296"
+    },
+    "total": 15.1891212,
+    "count": 1,
+    "self": 0.3335504,
+    "children": {
+        "run_training.setup": {
+            "total": 0.008912099999999867,
+            "count": 1,
+            "self": 0.008912099999999867
+        },
+        "TrainerController.start_learning": {
+            "total": 14.8466587,
+            "count": 1,
+            "self": 0.0005295000000025141,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 14.8456381,
+                    "count": 1,
+                    "self": 14.8456381
+                },
+                "trainer_threads": {
+                    "total": 1.1999999998124622e-06,
+                    "count": 1,
+                    "self": 1.1999999998124622e-06
+                },
+                "TrainerController._save_models": {
+                    "total": 0.0004898999999980447,
+                    "count": 1,
+                    "self": 0.0004898999999980447
+                }
+            }
+        }
+    }
+}

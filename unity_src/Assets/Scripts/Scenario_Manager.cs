@@ -32,12 +32,12 @@ public class Scenario_Manager : MonoBehaviour
         {
             default:
             case 0:
-                startPoint = Vector3.one * UnityEngine.Random.Range(-60, 60);
+                startPoint = Vector3.one * UnityEngine.Random.Range(-35, 35);
                 startPoint.y = 0;
                 enemy_component.ConfigureSpotPoint(startPoint);
                 break;
             case 1:
-                startPoint = Vector3.one * UnityEngine.Random.Range(-60, 60);
+                startPoint = Vector3.one * UnityEngine.Random.Range(-35, 35);
                 finaltPoint = startPoint * -1f;
                 startPoint.y = 0;
                 finaltPoint.y = 0;

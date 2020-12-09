@@ -9,25 +9,50 @@ public class Agente_Tanque : Agent
 {
     [SerializeField] private string enemy_tag;
     [SerializeField] private bool trainingMode;
+    [SerializeField] private float health = 100f;
     [SerializeField] private float m_Speed = 12f;
     [SerializeField] private float m_TurnSpeed = 180f; 
-    [SerializeField] private Scenario_Manager controller;
+    [SerializeField] private Scenario_Manager train_controller;
 
-    private Rigidbody m_Rigidbody;
-    private Transform target;
+    [SerializeField] private Transform enemy_visual_sphere;
+    [SerializeField] private Transform far_visual_sphere;
+    private float max_distance = 55f;
+    float enemy_threshold = 15f;
+    float far_threshold = 25;
+
+    private Rigidbody m_Rigidbody { get; set; }
+    private Transform target { get; set; }
+    public Transform Target
+    {
+        get { return target; }
+        set 
+        {
+            target = value; 
+        }
+    }
+    
 
     public override void Initialize()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Rigidbody.isKinematic = false;
-        transform.GetChild(0).GetComponent<RayPerceptionSensorComponent3D>().DetectableTags[1] = enemy_tag;
+
+        enemy_visual_sphere.gameObject.SetActive(trainingMode);
+        enemy_visual_sphere.gameObject.SetActive(far_visual_sphere);
+        if (trainingMode)
+        {
+            enemy_visual_sphere.localScale = Vector3.one * enemy_threshold * 2f;
+            far_visual_sphere.localScale = Vector3.one * far_threshold * 2f;
+        }
+        
+        GetComponent<RayPerceptionSensorComponent3D>().DetectableTags[1] = enemy_tag;
         if (!trainingMode) MaxStep = 0; //El valor de 0 significa infinito
     }
     public override void CollectObservations(VectorSensor sensor)
     {
         if (target==null)
         {
-            sensor.AddObservation(new float[12]);
+            sensor.AddObservation(new float[9]);
             return;
         }
 
@@ -46,12 +71,8 @@ public class Agente_Tanque : Agent
 
         // 1 observation
         float distance = Vector3.Distance(transform.localPosition, target.localPosition);
-        distance = Mathf.Clamp01(distance / 200f);
+        distance = Mathf.Clamp01(distance / max_distance);
         sensor.AddObservation(distance);
-
-        // 3 observation (Modelo 30)
-        Vector3 speed = m_Rigidbody.velocity.normalized;
-        sensor.AddObservation(speed);
     }
     public override void OnEpisodeBegin()
     {
@@ -66,18 +87,13 @@ public class Agente_Tanque : Agent
             {
                 level = 0;
             }
-            else/* if (CompletedEpisodes < 2000)*/
+            else
             {
                 level = 1;
             }
-            //else
-            //{
-            //    level = 2;
-            //    enemies = Mathf.Clamp(CompletedEpisodes / 5000, 1, 3);
-            //}
             transform.localPosition = new Vector3(0, 0.4f, 0);
             transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(-180f,180f), 0);
-            target = controller.IniciarEntrenamiento(level, enemies);
+            target = train_controller.IniciarEntrenamiento(level, enemies);
         }
     }
     public override void Heuristic(float[] actionsOut)
@@ -120,9 +136,6 @@ public class Agente_Tanque : Agent
     }
     private void EvaluateGeneralPosition()
     {
-        float enemy_threshold = 50f;
-        float far_threshold = 80;
-
         float distance = Vector3.Distance(transform.localPosition, target.localPosition);
         float dot = Vector3.Dot(transform.forward, (target.localPosition - transform.localPosition).normalized); //1 if pointing forward target,  -1 if facing oppsitve
         float distance_reward = 0;
@@ -136,7 +149,7 @@ public class Agente_Tanque : Agent
         else if(distance > far_threshold)
         {
             //outer radius away from the enemies center position
-            distance_reward = -Mathf.Clamp01((distance - 80) / 200f);
+            distance_reward = -Mathf.Clamp01((distance - far_threshold) / max_distance);
             angle_reward = dot;
         }
         else
@@ -145,34 +158,26 @@ public class Agente_Tanque : Agent
             safe_space = Mathf.Abs(safe_space - 0.5f); //expected [0, 0.5f] including negatives into positives. 0 is closer to center of the safe spot
             safe_space = (Mathf.Abs(safe_space - 0.5f))/0.5f; //expected [0,1] 1 closer to center of safe sport, 0 on the edge of the safe spot
             distance_reward = safe_space;
+
+            angle_reward = Mathf.Abs((Mathf.Abs(dot) - 1f));
         }
         AddReward(distance_reward);
         AddReward(angle_reward);
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        TriggerEnterOrStay(other);
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        TriggerEnterOrStay(other);
-    }
-    private void TriggerEnterOrStay(Collider other)
-    {
-        //if (other.CompareTag("Enemigo"))
-        //{
-        //    float distance2enemy = Vector3.Distance(transform.position, other.transform.position);
-        //    float distance_reward = -(distance2enemy / other.transform.localScale.x);
-        //    float angle_reward = AngleReward(other.transform.position);
-            
-        //    AddReward(distance_reward + angle_reward);
-        //}
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (trainingMode)
         {
             AddReward(-0.5f);
+        }
+        if(collision.gameObject.CompareTag("Bullet"))
+        {
+            health -= 20f;
+            if (health <= 0f)
+            {
+                MachineVsMachine.singleton.AgentDied(this);
+                enabled = false;
+            }
         }
     }
 }

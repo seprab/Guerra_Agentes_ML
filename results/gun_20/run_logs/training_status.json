@@ -1,0 +1,48 @@
+{
+    "gun": {
+        "checkpoints": [
+            {
+                "steps": 2499993,
+                "file_path": "results\\gun_20\\gun\\gun-2499993.onnx",
+                "reward": 420.98156664588237,
+                "creation_time": 1607476529.5497403
+            },
+            {
+                "steps": 2999964,
+                "file_path": "results\\gun_20\\gun\\gun-2999964.onnx",
+                "reward": 479.64450594958134,
+                "creation_time": 1607476805.9937828
+            },
+            {
+                "steps": 3499996,
+                "file_path": "results\\gun_20\\gun\\gun-3499996.onnx",
+                "reward": 954.8952550888062,
+                "creation_time": 1607477092.6003692
+            },
+            {
+                "steps": 3999916,
+                "file_path": "results\\gun_20\\gun\\gun-3999916.onnx",
+                "reward": 654.3183315753937,
+                "creation_time": 1607477378.454267
+            },
+            {
+                "steps": 4364569,
+                "file_path": "results\\gun_20\\gun\\gun-4364569.onnx",
+                "reward": 843.2257059415182,
+                "creation_time": 1607477589.113702
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4364569,
+            "file_path": "results\\gun_20\\gun.onnx",
+            "reward": 843.2257059415182,
+            "creation_time": 1607477589.113702
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.22.0",
+        "torch_version": "1.7.0",
+        "tensorflow_version": "2.3.1"
+    }
+}

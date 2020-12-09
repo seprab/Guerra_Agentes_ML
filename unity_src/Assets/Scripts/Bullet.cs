@@ -24,6 +24,9 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         CancelInvoke();
-        Destroy(gameObject);
+        transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+        LeanTween.scale(gameObject, Vector3.zero, 0.3f);
+        Destroy(gameObject,1f);
+        enabled = false;
     }
 }

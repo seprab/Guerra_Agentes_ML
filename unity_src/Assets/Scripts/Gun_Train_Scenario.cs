@@ -7,7 +7,7 @@ public class Gun_Train_Scenario : MonoBehaviour
     [SerializeField] Transform parent_enemies;
     [SerializeField] GameObject target_prefab;
 
-    public Transform IniciarEntrenamiento()
+    public Transform IniciarEntrenamiento(int level)
     {
         if (parent_enemies.childCount > 0)
         {
@@ -19,6 +19,7 @@ public class Gun_Train_Scenario : MonoBehaviour
 
         GameObject target = Instantiate(target_prefab, parent_enemies);
         target.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(-180f, 180f), 0);
+        target.transform.GetChild(0).localPosition = new Vector3(0, 1, level * 5);
         return target.transform.GetChild(0);
     }
 }
