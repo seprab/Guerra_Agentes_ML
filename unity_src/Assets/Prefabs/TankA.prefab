@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6814131972886566294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148670954709521026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: Gun
+  m_DetectableTags:
+  - TeamB
+  m_RaysPerDirection: 0
+  m_MaxRayDegrees: 70
+  m_SphereCastRadius: 0
+  m_RayLength: 30
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
 --- !u!1 &148670954709528996
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,12 +107,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 12
+    VectorObservationSize: 9
     NumStackedVectorObservations: 1
     VectorActionSize: 03000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: 1427ff320b8c0714bb123fca966f9f4b, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 873401261f1afc14d95c2686f9ede9db, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: war
@@ -113,8 +140,8 @@ MonoBehaviour:
   m_Speed: 12
   m_TurnSpeed: 180
   train_controller: {fileID: 0}
-  enemy_visual_sphere: {fileID: 0}
-  far_visual_sphere: {fileID: 0}
+  enemy_visual_sphere: {fileID: 611771501651065497}
+  far_visual_sphere: {fileID: 4081212640944168926}
 --- !u!114 &606210019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +171,7 @@ MonoBehaviour:
   m_SensorName: MoveRays
   m_DetectableTags:
   - Limites
-  - Enemigo
+  - TeamB
   - Obstaculo
   m_RaysPerDirection: 3
   m_MaxRayDegrees: 162
@@ -496,7 +523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8457826056634320379
 Transform:
   m_ObjectHideFlags: 0
@@ -601,7 +628,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 25645275, guid: 6dac3722d7b138345a68a15205f5c11b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 106256297, guid: 6dac3722d7b138345a68a15205f5c11b, type: 3}
       propertyPath: enemy_tag
@@ -614,13 +641,22 @@ PrefabInstance:
     - target: {fileID: 106256298, guid: 6dac3722d7b138345a68a15205f5c11b, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: f35d1e6d0398bba4499fa34dfcf76139,
+      objectReference: {fileID: 5022602860645237092, guid: 9457026d8e844f34f9e3dd5e58939f79,
         type: 3}
+    - target: {fileID: 106256298, guid: 6dac3722d7b138345a68a15205f5c11b, type: 3}
+      propertyPath: m_BrainParameters.VectorObservationSize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7010910308640241275, guid: 6dac3722d7b138345a68a15205f5c11b,
         type: 3}
       propertyPath: m_SensorName
       value: ShotArrays
       objectReference: {fileID: 0}
+    - target: {fileID: 8070970797311454422, guid: 6dac3722d7b138345a68a15205f5c11b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 12c120f2400576c4f97a98bcca5529bc, type: 2}
     - target: {fileID: 8070970797313286128, guid: 6dac3722d7b138345a68a15205f5c11b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -684,6 +720,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7010910308640241275, guid: 6dac3722d7b138345a68a15205f5c11b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6dac3722d7b138345a68a15205f5c11b, type: 3}
+--- !u!1 &148670954709521026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8070970797313572862, guid: 6dac3722d7b138345a68a15205f5c11b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8219621685856054652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &148670954709774988 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8070970797313286128, guid: 6dac3722d7b138345a68a15205f5c11b,

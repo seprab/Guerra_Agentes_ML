@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Policies;
+using System.Linq;
 
 public class Agente_Tanque : Agent
 {
@@ -30,7 +31,23 @@ public class Agente_Tanque : Agent
             target = value; 
         }
     }
-    
+    public void ChooseTarget(List<Agente_Tanque> targets)
+    {
+        Vector3 selfPosition = transform.position;
+        float closestDistance = Mathf.Infinity;
+        int closestIndex = 0;
+
+        for (int i=0; i<targets.Count; i++)
+        {
+            float tempDistance = Vector3.Distance(targets[i].transform.position, selfPosition);
+            if(tempDistance<closestDistance)
+            {
+                closestDistance = tempDistance;
+                closestIndex = i;
+            }
+        }
+        Target = targets[closestIndex].transform;
+    }
 
     public override void Initialize()
     {
@@ -125,13 +142,17 @@ public class Agente_Tanque : Agent
         Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
     }
-
+     
 
     private void Update()
     {
         if(trainingMode)
         {
             EvaluateGeneralPosition();
+        }
+        if(Target!=null)
+        {
+            Debug.DrawLine(transform.position, target.position, Color.red, Time.deltaTime);
         }
     }
     private void EvaluateGeneralPosition()
@@ -172,11 +193,12 @@ public class Agente_Tanque : Agent
         }
         if(collision.gameObject.CompareTag("Bullet"))
         {
+            Debug.Log($"{name} recibio impacto de {collision.transform.parent.parent.parent.parent.name}");
             health -= 20f;
             if (health <= 0f)
             {
                 MachineVsMachine.singleton.AgentDied(this);
-                enabled = false;
+                Destroy(gameObject);
             }
         }
     }

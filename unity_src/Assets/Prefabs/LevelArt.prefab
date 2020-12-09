@@ -588,7 +588,7 @@ GameObject:
   - component: {fileID: 444496}
   - component: {fileID: 3357074}
   - component: {fileID: 2393758}
-  - component: {fileID: 6476316}
+  - component: {fileID: 6705335389807043477}
   m_Layer: 0
   m_Name: GroundPlane
   m_TagString: Untagged
@@ -605,7 +605,7 @@ Transform:
   m_GameObject: {fileID: 111698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 437402}
   m_RootOrder: 0
@@ -657,8 +657,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &6476316
-MeshCollider:
+--- !u!65 &6705335389807043477
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -667,10 +667,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 126dbcddb53386c4f969fdf0c555e822, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 100, y: 0.81, z: 100}
+  m_Center: {x: 0, y: -0.36, z: 0}
 --- !u!1 &114680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,7 +1923,6 @@ GameObject:
   - component: {fileID: 3317570}
   - component: {fileID: 2396762}
   - component: {fileID: 6572960}
-  - component: {fileID: 13624690}
   m_Layer: 0
   m_Name: Rocks02 (4)
   m_TagString: Obstaculo
@@ -2004,22 +2002,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.3370209, y: 0.93781877, z: 4.7369237}
+  m_Size: {x: 3.3370209, y: 5.38, z: 4.7369237}
   m_Center: {x: 0.15951824, y: 0.43595207, z: -0.034565687}
---- !u!136 &13624690
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 124142}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.26
-  m_Height: 3.503523
-  m_Direction: 1
-  m_Center: {x: 0.37, y: 1.7188042, z: 0.41}
 --- !u!1 &124778
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,7 +2781,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.3370209, y: 0.93781877, z: 4.7369237}
+  m_Size: {x: 3.3370209, y: 5.01, z: 4.7369237}
   m_Center: {x: 0.15951824, y: 0.43595207, z: -0.034565687}
 --- !u!1 &133878
 GameObject:
@@ -2812,8 +2796,6 @@ GameObject:
   - component: {fileID: 2384198}
   - component: {fileID: 6566382}
   - component: {fileID: 6536290}
-  - component: {fileID: 6547838}
-  - component: {fileID: 6564758}
   m_Layer: 0
   m_Name: Column02 (2)
   m_TagString: Obstaculo
@@ -2908,32 +2890,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.5194263, y: 10.581281, z: 3.3332095}
   m_Center: {x: 1.5593307, y: 4.195662, z: 0.49814048}
---- !u!65 &6547838
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133878}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.531517, y: 3.1525688, z: 2.7932544}
-  m_Center: {x: 2.0767896, y: 0.48130724, z: -0.5640873}
---- !u!65 &6564758
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133878}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.38355, y: 2.4521759, z: 2.7495742}
-  m_Center: {x: -1.9607426, y: 0.1311102, z: 2.9118295}
 --- !u!1 &135784
 GameObject:
   m_ObjectHideFlags: 0
@@ -3970,7 +3926,6 @@ GameObject:
   - component: {fileID: 402876}
   - component: {fileID: 3341272}
   - component: {fileID: 2342488}
-  - component: {fileID: 13612022}
   m_Layer: 0
   m_Name: Cow (1)
   m_TagString: Untagged
@@ -4039,20 +3994,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &13612022
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152182}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.1268827
-  m_Height: 0.72564423
-  m_Direction: 1
-  m_Center: {x: -0.01668877, y: 0.26629117, z: -0.02047491}
 --- !u!1 &152192
 GameObject:
   m_ObjectHideFlags: 0
@@ -4475,8 +4416,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.3370209, y: 0.93781877, z: 4.7369237}
-  m_Center: {x: 0.15951824, y: 0.43595207, z: -0.034565687}
+  m_Size: {x: 3.3370209, y: 3.73, z: 4.7369237}
+  m_Center: {x: 0.15951824, y: 1.86, z: -0.034565687}
 --- !u!1 &157012
 GameObject:
   m_ObjectHideFlags: 0
@@ -5673,7 +5614,6 @@ GameObject:
   - component: {fileID: 463280}
   - component: {fileID: 3360928}
   - component: {fileID: 2345250}
-  - component: {fileID: 9526896}
   - component: {fileID: 13638260}
   m_Layer: 0
   m_Name: OilStorage (1)
@@ -5744,25 +5684,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &9526896
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165640}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e307cb54b57a59342868ad47d1ed0c30, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!136 &13638260
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5965,7 +5886,7 @@ Transform:
   m_GameObject: {fileID: 171356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.7, y: 1, z: 2.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 429728}
   - {fileID: 450270}
@@ -5988,8 +5909,6 @@ GameObject:
   - component: {fileID: 421160}
   - component: {fileID: 3351454}
   - component: {fileID: 2354412}
-  - component: {fileID: 13682108}
-  - component: {fileID: 6506228}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -6058,33 +5977,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &13682108
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171720}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.32
-  m_Height: 0.72564423
-  m_Direction: 1
-  m_Center: {x: 0.03, y: 0.09, z: -0.74}
---- !u!65 &6506228
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171720}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.93612695, y: 0.43964303, z: 1.3130063}
-  m_Center: {x: -0.016620286, y: 0.12329057, z: 0.13140981}
 --- !u!1 &173254
 GameObject:
   m_ObjectHideFlags: 0
@@ -6607,7 +6499,6 @@ GameObject:
   - component: {fileID: 415166}
   - component: {fileID: 3300968}
   - component: {fileID: 2379240}
-  - component: {fileID: 9579856}
   - component: {fileID: 13655406}
   m_Layer: 0
   m_Name: OilStorage
@@ -6678,25 +6569,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &9579856
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180058}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e307cb54b57a59342868ad47d1ed0c30, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!136 &13655406
 CapsuleCollider:
   m_ObjectHideFlags: 0
