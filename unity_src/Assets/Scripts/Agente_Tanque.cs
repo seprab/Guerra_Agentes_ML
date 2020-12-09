@@ -11,7 +11,7 @@ public class Agente_Tanque : Agent
     [SerializeField] private string enemy_tag;
     [SerializeField] private bool trainingMode;
     [SerializeField] private float health = 100f;
-    [SerializeField] private float m_Speed = 12f;
+    [SerializeField] private float m_Speed = 20f;
     [SerializeField] private float m_TurnSpeed = 180f; 
     [SerializeField] private Scenario_Manager train_controller;
 
@@ -144,7 +144,7 @@ public class Agente_Tanque : Agent
     }
      
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(trainingMode)
         {
@@ -157,8 +157,8 @@ public class Agente_Tanque : Agent
     }
     private void EvaluateGeneralPosition()
     {
-        float distance = Vector3.Distance(transform.localPosition, target.localPosition);
-        float dot = Vector3.Dot(transform.forward, (target.localPosition - transform.localPosition).normalized); //1 if pointing forward target,  -1 if facing oppsitve
+        float distance = Vector3.Distance(transform.position, target.position);
+        float dot = Vector3.Dot(transform.forward, (target.position - transform.position).normalized); //1 if pointing forward target,  -1 if facing oppsitve
         float distance_reward = 0;
         float angle_reward = 0;
         if(distance < enemy_threshold)

@@ -1,0 +1,24 @@
+{
+    "gun": {
+        "checkpoints": [
+            {
+                "steps": 9658,
+                "file_path": "results\\gun_27\\gun\\gun-9658.onnx",
+                "reward": -30.115704135461286,
+                "creation_time": 1607541176.671722
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 9658,
+            "file_path": "results\\gun_27\\gun.onnx",
+            "reward": -30.115704135461286,
+            "creation_time": 1607541176.671722
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.22.0",
+        "torch_version": "1.7.0",
+        "tensorflow_version": "2.3.1"
+    }
+}

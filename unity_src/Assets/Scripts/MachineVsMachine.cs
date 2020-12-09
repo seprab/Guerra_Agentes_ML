@@ -35,17 +35,7 @@ public class MachineVsMachine : MonoBehaviour
     }
     private void Start()
     {
-        //teamA_tanks = new List<Agente_Tanque>();
-        //teamB_tanks = new List<Agente_Tanque>();
-        //for(int i=0; i<number_agents; i++)
-        //{
-        //    teamA_tanks.Add(SpawnTank(prefab_tankA, teamA_parent));
-        //    teamB_tanks.Add(SpawnTank(prefab_tankB, teamB_parent));
-        //}
-        //teamA_tanks.ForEach(x => AssignRandomTarget(x, teamB_tanks));
-        //teamB_tanks.ForEach(x => AssignRandomTarget(x, teamA_tanks)); 
-        teamA.agents.ForEach(x => x.ChooseTarget(teamB.agents));
-        teamB.agents.ForEach(x => x.ChooseTarget(teamA.agents));
+        ChooseTargets();
     }
     private Agente_Tanque SpawnTank(Team team)
     {
@@ -93,5 +83,11 @@ public class MachineVsMachine : MonoBehaviour
     {
         Debug.Log("Actividad finalizada, uno de los equipos no tiene tanques restantes");
         Debug.Break();
+    }
+    public void ChooseTargets()
+    {
+        teamA.agents.ForEach(x => x.ChooseTarget(teamB.agents));
+        teamB.agents.ForEach(x => x.ChooseTarget(teamA.agents));
+        Invoke("ChooseTargets", 5f);
     }
 }

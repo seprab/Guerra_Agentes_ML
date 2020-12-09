@@ -21,7 +21,7 @@ MonoBehaviour:
   m_RayLength: 30
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967291
+    m_Bits: 2048
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
@@ -641,7 +641,7 @@ PrefabInstance:
     - target: {fileID: 106256298, guid: 6dac3722d7b138345a68a15205f5c11b, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 9457026d8e844f34f9e3dd5e58939f79,
+      objectReference: {fileID: 5022602860645237092, guid: 19d14ab0e982ea04fa009013ab7f1354,
         type: 3}
     - target: {fileID: 106256298, guid: 6dac3722d7b138345a68a15205f5c11b, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize

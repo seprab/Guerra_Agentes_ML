@@ -10,6 +10,7 @@ public class Agent_Gun : Agent
     private Transform target;
     private Rigidbody m_Rigidbody;
     private bool ShotAvaliable = true;
+    private int SuccesfulShots = 0;
 
     [SerializeField] private string enemy_tag;
     [SerializeField] private Gun_Train_Scenario train_controller;
@@ -56,6 +57,7 @@ public class Agent_Gun : Agent
         m_Rigidbody.angularVelocity = Vector3.zero;
         if (trainingMode)
         {
+            SuccesfulShots = 0;
             ShotAvaliable = true;          
             transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(-180f, 180f), 0);
             Debug.Log(CompletedEpisodes);
@@ -107,7 +109,12 @@ public class Agent_Gun : Agent
             {
                 Debug.DrawRay(transform.position, direction*50f, Color.blue, 1f);
                 AddReward(1f);
-                EndEpisode();
+                SuccesfulShots++;
+                if(SuccesfulShots >= 10)
+                {
+                    EndEpisode();
+                }
+                
             }
             else
             {
@@ -124,6 +131,7 @@ public class Agent_Gun : Agent
     {
         if (trainingMode)
         {
+            if (target == null) return;
             float dot = Vector3.Dot(transform.forward, (target.localPosition - transform.localPosition).normalized); //1 if pointing forward target,  -1 if facing oppsitve
             float reward = dot - 0.8f;
             AddReward(reward/100f);

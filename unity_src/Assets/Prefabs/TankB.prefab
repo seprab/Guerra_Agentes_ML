@@ -122,6 +122,11 @@ PrefabInstance:
       propertyPath: m_DetectableTags.Array.data[0]
       value: TeamA
       objectReference: {fileID: 0}
+    - target: {fileID: 6814131972886566294, guid: 426aeb30f20a2f14785cff75fa2250f4,
+        type: 3}
+      propertyPath: m_RayLayerMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 8219621685827566293, guid: 426aeb30f20a2f14785cff75fa2250f4,
         type: 3}
       propertyPath: enemy_tag
